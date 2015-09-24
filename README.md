@@ -57,3 +57,7 @@ expr = ex.conn.eval 'sum(x)'
 # And convert the expression back to ruby:
 expr.to_ruby
 ```
+
+# Sources
+
+- The ruby client uses the gem ['rserve-client'](https://github.com/clbustos/Rserve-Ruby-client), by [Claudio Bustos](https://github.com/clbustos)
