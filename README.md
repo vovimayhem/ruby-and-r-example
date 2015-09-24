@@ -38,7 +38,7 @@ require './example'
 ex = Example.new
 
 # Do a sum remotely on the R host:
-ex.sum_on_r 1,2,3,4,5
+ex.sum_remotely 1,2,3,4,5
 # => 15
 
 # Use the example object's connection to try out more stuff on the R host:

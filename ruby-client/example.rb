@@ -13,7 +13,7 @@ class Example
   # Returns the sum of given parameters by assigning the parameters to a variable
   # in the R shell, summing the remotely on the R shell, and receiving the
   # result back to the ruby process:
-  def sum_on_r(*input_array)
+  def sum_remotely(*input_array)
     # Assign the input array to a variable in the remote R host:
     conn.assign "x", input_array
 
