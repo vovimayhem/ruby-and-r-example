@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'pry'
+gem 'byebug'
+
+# Gem used to connect with the R engine via Rserve:
+gem 'rserve-client', '~> 0.3.1', require: false

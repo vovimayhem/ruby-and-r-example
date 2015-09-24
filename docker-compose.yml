@@ -1,0 +1,29 @@
+---
+# The "engine" container. It hosts a R Shell server via Rserve with nothing more
+# than the standard R functions, but in a real-world example it would host
+# R scripts and functions, models, etc that would be available to a remote client,
+# which in this example is the ruby app running in the other container.
+engine:
+  image: r-base:3.2.2
+  volumes:
+    - ./r-host:/app
+  working_dir: /app
+  command: Rscript start.R
+  expose:
+    - "6311"
+
+# The "client" container. It hosts a Ruby client app, which connects to the R
+# engine via Rserve to do a simple array sum, but in a real-world example it would
+# call any statistical function providing parameters directly from ruby, and receive
+# back the results in ruby.
+client:
+  build: ./ruby-client
+  dockerfile: dev.Dockerfile
+  volumes:
+    - ./ruby-client:/app
+  links:
+    # We'll refer to our engine container at engine.example.com:
+    - engine:engine.example.com
+  environment:
+    # The URL pointing to our engine container:
+    ENGINE_URL: tcp://engine.example.com:6311
